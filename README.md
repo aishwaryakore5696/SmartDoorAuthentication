@@ -11,3 +11,7 @@ Homework Assignment 2
 • The S3 bucket link, where the website is hosted. 
 https://s3.console.aws.amazon.com/s3/buckets/smartdoorauthenticationsystem2/?region=us-east-1
 
+• URL of GitHub Release. 
+https://github.com/aishwaryakore5696/SmartDoorAuthentication/releases/tag/version1
+
+
