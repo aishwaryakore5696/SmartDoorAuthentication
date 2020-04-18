@@ -1,0 +1,105 @@
+<html>
+ <script type="text/javascript" src="lib/axios/dist/axios.standalone.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/rollups/hmac-sha256.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/rollups/sha256.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/components/hmac.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/components/enc-base64.js"></script>
+    <script type="text/javascript" src="lib/url-template/url-template.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/sigV4Client.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/apiGatewayClient.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/simpleHttpClient.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/utils.js"></script>
+    <script type="text/javascript" src="apigClient.js"></script>
+<style>
+	.entirepage{
+		background-color: lightgrey;
+		height:100%;
+	}
+	.titlediv{
+		height: 10%;
+		background-color:#4CAF50;
+		text-align: center;
+		padding-top: 5px;
+	}
+	.visitorinfo{
+		width:350px;
+		height:200px;
+		background-color:#4CAF50;
+		text-align: center;
+		padding-top: 30px;
+		font-size: 25px;
+	}
+	.whitediv{
+		margin-left:33%;
+		margin-top:10%;	
+		background-color: white;
+		height: 300px;
+		width:400px;
+		padding-top: 50px;
+		padding-left: 50px;
+		padding-top: 50px;
+		padding-left: 50px;
+		font-weight: bold;
+	}
+</style>
+<body>
+	<div class="entirepage">
+	<div class="titlediv">
+	<h1>WP1</h1>
+	</div>
+	<div class="whitediv">
+	<div class="visitorinfo">
+	<label>Name</label><br />
+	<input type="text" id="name" placeholder="Enter Name of Visitor"></input>
+	<br /><br />
+	<label>Phone Number</label><br />
+	<input type="text" id="phno" placeholder="Enter Visitors Phone Number"></input>
+	<br /><br />
+	<button onclick="validatephno()">Permit Visitor</button>
+	</div>
+	</div>
+	</div>
+<script type="text/javascript">
+function validatephno()
+	{
+	var phno=document.getElementById("phno").value;
+	var phoneno = /^\d{10}$/;
+
+  	if(phno.match(phoneno))
+        {
+        	submitform()
+        }
+   	else 
+   		alert("Invalid phone number. Please enter it again.")
+   		
+   }
+function submitform()
+{
+	let searchParams = new URLSearchParams(window.location.search);
+    var faceid = searchParams.get('faceid');
+    console.log("faceid:",faceid);
+	var apigClient = apigClientFactory.newClient();
+	var name=document.getElementById("name").value;
+	var phno=document.getElementById("phno").value;
+	var msg={"name":name,"phno":phno,"faceid":faceid};
+	var body=JSON.stringify(msg);
+	var params={};
+	var additionalParams = {
+    headers: {
+       
+    },
+    queryParams: {
+       
+    }
+	};
+	apigClient.rootPost(params,body,additionalParams).then(function(result){
+  		var name=JSON.stringify(result.data.name);
+  		alert("Permitted visitor:"+name);
+		}); 
+	}
+
+	
+</script>
+
+</body>
+</html>
