@@ -12,6 +12,6 @@ Homework Assignment 2
 https://s3.console.aws.amazon.com/s3/buckets/smartdoorauthenticationsystem2/?region=us-east-1
 
 • URL of GitHub Release. 
-https://github.com/aishwaryakore5696/SmartDoorAuthentication/releases/tag/version1
+https://github.com/aishwaryakore5696/SmartDoorAuthentication/releases/tag/version2
 
 
